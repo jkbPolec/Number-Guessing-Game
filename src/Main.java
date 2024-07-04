@@ -1,19 +1,35 @@
+import java.util.Random;
+import java.util.Scanner;
+import java.awt.EventQueue;
+
 public class Main {
+
     public static void main(String[] args) {
-        System.out.print("Hello and welcome!");
-
-        for (int i = 1; i <= 5; i++) {
-            System.out.println("i = " + i);
-        }
-
-        Main.test();
-    }
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new MyFrame();
+            }
+        });
 
 
+        Random rand = new Random();
+        Scanner sc = new Scanner(System.in);
 
-    public static void test()
-    {
-        System.out.println("Test");
+        int r = rand.nextInt(100);
+        System.out.println(r);
+
+        int input;
+        do {
+            input = sc.nextInt();
+            if (input < r) {
+                System.out.println("Too low");
+            }
+            else if (input > r) {
+                System.out.println("Too high");
+            }
+        } while (input != r);
+
     }
 
 
