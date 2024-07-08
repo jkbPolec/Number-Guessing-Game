@@ -5,6 +5,9 @@ import java.util.Scanner;
 
 public class Main {
 
+    private static int randomNumber;
+    private static boolean gameRunning = true;
+
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             @Override
@@ -15,30 +18,38 @@ public class Main {
             }
         });
 
+        Random rand = new Random();
+        Scanner sc = new Scanner(System.in);
 
-        while (true)
+        setRandomNumber(rand.nextInt(100));
+
+
+
+        while (gameRunning)
         {
             MyFrame.updateTimer();
         }
 
-//        Random rand = new Random();
-//        Scanner sc = new Scanner(System.in);
-//
-//        int r = rand.nextInt(100);
-//        System.out.println(r);
-//
-//        int input;
-//        do {
-//            input = sc.nextInt();
-//            if (input < r) {
-//                System.out.println("Too low");
-//            }
-//            else if (input > r) {
-//                System.out.println("Too high");
-//            }
-//        } while (input != r);
-
     }
 
+    private static void setRandomNumber(int r)
+    {
+        randomNumber = r;
+    }
+
+    public static void checkNumber(int number) {
+        if(number > randomNumber)
+        {
+            MyFrame.updateResultField(number + " is too high :<");
+        }
+        else if (number < randomNumber)
+        {
+            MyFrame.updateResultField(number + " is too low :<");
+        }
+        else {
+            MyFrame.updateResultField(number + " is correct number :>");
+            gameRunning = false;
+        }
+    }
 
 }

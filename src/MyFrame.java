@@ -3,13 +3,17 @@ import javax.swing.JButton;
 import java.awt.*;
 import javax.swing.JTextField;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 
-public class MyFrame extends JFrame {
+public class MyFrame extends JFrame implements ActionListener {
 
     private static JTextField timeField;
     private static JTextField inputField;
+    private JButton confirmButton;
+    private static JTextField resultField;
     static long startTime = System.currentTimeMillis();
 
     public MyFrame() {
@@ -20,7 +24,6 @@ public class MyFrame extends JFrame {
         setLocation(700,200);
         setLayout(new GridLayout(4,1));
 
-        add(new JButton("Button 1"));
 //        add(new JButton("Button 2"));
 //        add(new JButton("Button 3"));
 
@@ -28,6 +31,18 @@ public class MyFrame extends JFrame {
         add(timeField);
 
         inputField = new JTextField(10);
+        Font font = new Font("Arial", Font.PLAIN, 36);
+        inputField.setFont(font);
+        add(inputField);
+
+        confirmButton = new JButton("Confirm");
+        confirmButton.setFont(font);
+        confirmButton.addActionListener(this);
+        add(confirmButton);
+
+        resultField = new JTextField("Guess the number :)");
+        resultField.setFont(font);
+        add(resultField);
 
 
         setVisible(true);
@@ -47,9 +62,11 @@ public class MyFrame extends JFrame {
     }
 
 
+    public static void updateResultField(String s) {
+        resultField.setText(s);
+    }
 
-    public static void updateTimer()
-    {
+    public static void updateTimer() {
         if (timeField == null)
         {
             System.out.print(""); //nwm czemu jak tego nie ma, to okienko timeField nie wyswietla potem sekund
@@ -61,4 +78,16 @@ public class MyFrame extends JFrame {
 
         timeField.setText((60 - secondsPassed) + "s");
     }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Object source = e.getSource();
+
+        if (source == confirmButton)
+        {
+            Main.checkNumber(Integer.parseInt(inputField.getText()));
+        }
+    }
+
+
 }
