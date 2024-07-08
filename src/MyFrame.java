@@ -1,7 +1,5 @@
-import javax.swing.JFrame;
-import javax.swing.JButton;
+import javax.swing.*;
 import java.awt.*;
-import javax.swing.JTextField;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +10,7 @@ public class MyFrame extends JFrame implements ActionListener {
 
     private static JTextField timeField;
     private static JTextField inputField;
-    private JButton confirmButton;
+    private static JButton confirmButton;
     private static JTextField resultField;
     static long startTime = System.currentTimeMillis();
 
@@ -24,13 +22,10 @@ public class MyFrame extends JFrame implements ActionListener {
         setLocation(700,200);
         setLayout(new GridLayout(4,1));
 
-//        add(new JButton("Button 2"));
-//        add(new JButton("Button 3"));
-
         timeField = createTimeField();
         add(timeField);
 
-        inputField = new JTextField(10);
+        inputField = new JTextField();
         Font font = new Font("Arial", Font.PLAIN, 36);
         inputField.setFont(font);
         add(inputField);
@@ -61,7 +56,6 @@ public class MyFrame extends JFrame implements ActionListener {
         return newField;
     }
 
-
     public static void updateResultField(String s) {
         resultField.setText(s);
     }
@@ -77,6 +71,18 @@ public class MyFrame extends JFrame implements ActionListener {
         long secondsPassed = (currentTime - startTime)/1000;
 
         timeField.setText((60 - secondsPassed) + "s");
+
+        if (secondsPassed >= 60)
+        {
+            Main.EndGame();
+            updateResultField("End of time :(");
+        }
+    }
+
+    public static void disableInputs()
+    {
+        inputField.setEditable(false);
+        confirmButton.setEnabled(false);
     }
 
     @Override
@@ -88,6 +94,4 @@ public class MyFrame extends JFrame implements ActionListener {
             Main.checkNumber(Integer.parseInt(inputField.getText()));
         }
     }
-
-
 }

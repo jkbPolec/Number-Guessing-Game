@@ -14,7 +14,6 @@ public class Main {
             public void run() {
                 new MyFrame();
 
-
             }
         });
 
@@ -22,8 +21,6 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         setRandomNumber(rand.nextInt(100));
-
-
 
         while (gameRunning)
         {
@@ -48,8 +45,13 @@ public class Main {
         }
         else {
             MyFrame.updateResultField(number + " is correct number :>");
-            gameRunning = false;
+            EndGame();
         }
+    }
+
+    public static void EndGame() {
+        gameRunning = false;
+        MyFrame.disableInputs();
     }
 
 }
