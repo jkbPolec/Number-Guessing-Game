@@ -1,6 +1,7 @@
+import java.awt.*;
 import java.util.Random;
 import java.util.Scanner;
-import java.awt.EventQueue;
+
 
 public class Main {
 
@@ -9,26 +10,33 @@ public class Main {
             @Override
             public void run() {
                 new MyFrame();
+
+
             }
         });
 
 
-        Random rand = new Random();
-        Scanner sc = new Scanner(System.in);
+        while (true)
+        {
+            MyFrame.updateTimer();
+        }
 
-        int r = rand.nextInt(100);
-        System.out.println(r);
-
-        int input;
-        do {
-            input = sc.nextInt();
-            if (input < r) {
-                System.out.println("Too low");
-            }
-            else if (input > r) {
-                System.out.println("Too high");
-            }
-        } while (input != r);
+//        Random rand = new Random();
+//        Scanner sc = new Scanner(System.in);
+//
+//        int r = rand.nextInt(100);
+//        System.out.println(r);
+//
+//        int input;
+//        do {
+//            input = sc.nextInt();
+//            if (input < r) {
+//                System.out.println("Too low");
+//            }
+//            else if (input > r) {
+//                System.out.println("Too high");
+//            }
+//        } while (input != r);
 
     }
 
