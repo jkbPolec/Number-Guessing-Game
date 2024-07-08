@@ -1,20 +1,55 @@
-public class Main {
-    public static void main(String[] args) {
-        System.out.print("Hello and welcome!");
+import java.awt.*;
+import java.util.Random;
+import java.util.Scanner;
 
-        for (int i = 1; i <= 5; i++) {
-            System.out.println("i = " + i);
+
+public class Main {
+
+    private static int randomNumber;
+    private static boolean gameRunning = true;
+
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new MyFrame();
+
+
+            }
+        });
+
+        Random rand = new Random();
+        Scanner sc = new Scanner(System.in);
+
+        setRandomNumber(rand.nextInt(100));
+
+
+
+        while (gameRunning)
+        {
+            MyFrame.updateTimer();
         }
 
-        Main.test();
     }
 
-
-
-    public static void test()
+    private static void setRandomNumber(int r)
     {
-        System.out.println("Test");
+        randomNumber = r;
     }
 
+    public static void checkNumber(int number) {
+        if(number > randomNumber)
+        {
+            MyFrame.updateResultField(number + " is too high :<");
+        }
+        else if (number < randomNumber)
+        {
+            MyFrame.updateResultField(number + " is too low :<");
+        }
+        else {
+            MyFrame.updateResultField(number + " is correct number :>");
+            gameRunning = false;
+        }
+    }
 
 }
