@@ -26,9 +26,11 @@ public class MenuFrame extends JFrame implements ActionListener {
 
         JPanel panel = new JPanel();
 
-        bottomValue = new JTextField(10);
+        bottomValue = new JTextField(5);
+        Styling.AddFont(bottomValue);
         bottomValue.setText("0");
-        topValue = new JTextField(10);
+        topValue = new JTextField(5);
+        Styling.AddFont(topValue);
         topValue.setText("100");
 
         JLabel label = new JLabel("From");
