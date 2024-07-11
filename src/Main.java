@@ -1,6 +1,5 @@
 import java.awt.*;
 import java.util.Random;
-import java.util.Scanner;
 
 
 public class Main {
@@ -14,17 +13,16 @@ public class Main {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new MenuFrame();
-
+                menuFrame = new MenuFrame();
 
             }
         });
 
 
-
         while (gameRunning)
         {
             GameFrame.updateTimer();
+
         }
 
     }
@@ -36,12 +34,10 @@ public class Main {
         }
 
         Random rand = new Random();
-        Scanner sc = new Scanner(System.in);
 
         setRandomNumber(rand.nextInt(MenuFrame.getBottomValue(), MenuFrame.getTopValue()));
 
-
-        gameFrame = new GameFrame();
+        if (gameFrame == null) {gameFrame = new GameFrame();}
     }
 
     private static void setRandomNumber(int r) {
