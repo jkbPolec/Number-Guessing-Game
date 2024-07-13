@@ -1,11 +1,11 @@
 import java.awt.*;
+import javax.swing.Timer;
 import java.util.Random;
 
 
 public class Main {
 
     private static int randomNumber;
-    private static boolean gameRunning = true;
     private static MenuFrame menuFrame;
     private static GameFrame gameFrame;
 
@@ -17,13 +17,6 @@ public class Main {
 
             }
         });
-
-
-        while (gameRunning)
-        {
-            GameFrame.updateTimer();
-
-        }
 
     }
 
@@ -38,12 +31,19 @@ public class Main {
         setRandomNumber(rand.nextInt(MenuFrame.getBottomValue(), MenuFrame.getTopValue()));
 
         if (gameFrame == null) {gameFrame = new GameFrame();}
+
+
+        startTimer();
+    }
+
+    private static void startTimer() {
+        Timer timer = new Timer(1000, e -> GameFrame.updateTimer());
+        timer.start();
     }
 
     private static void setRandomNumber(int r) {
         randomNumber = r;
     }
-
 
 
     public static void checkNumber(int number) {
@@ -62,7 +62,6 @@ public class Main {
     }
 
     public static void EndGame() {
-        gameRunning = false;
         GameFrame.disableInputs();
     }
 
