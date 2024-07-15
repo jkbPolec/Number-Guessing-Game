@@ -8,6 +8,7 @@ public class Main {
     private static int randomNumber;
     private static MenuFrame menuFrame;
     private static GameFrame gameFrame;
+    private static Timer timer;
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
@@ -37,7 +38,7 @@ public class Main {
     }
 
     private static void startTimer() {
-        Timer timer = new Timer(1000, e -> GameFrame.updateTimer());
+        timer = new Timer(1000, e -> GameFrame.updateTimer());
         timer.start();
     }
 
@@ -63,6 +64,9 @@ public class Main {
 
     public static void EndGame() {
         GameFrame.disableInputs();
+        if (timer != null) {
+            timer.stop();
+        }
     }
 
 }

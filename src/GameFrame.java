@@ -95,9 +95,6 @@ public class GameFrame extends JFrame implements ActionListener {
                 updateResultField("It isnt a number :<");
                 System.err.println(exc);
             }
-
-
-
         }
     }
 }

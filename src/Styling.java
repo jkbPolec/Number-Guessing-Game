@@ -24,5 +24,4 @@ public class Styling {
         comp.setFont(tempFont);
     }
 
-
 }
